@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Doroxandria · Engenharia Cognitiva para Concursos</title>
+    <meta
+      name="description"
+      content="Doroxandria transforma edital, materiais e desempenho num plano diário que se ajusta sozinho."
+    />
+    <link rel="icon" href="/doroxandria-app/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/doroxandria-app/apple-touch-icon-180x180.png" />
+    <meta name="theme-color" content="#f6f4f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#12110f" media="(prefers-color-scheme: dark)" />
+    <script>
+      // Aplica o tema antes da pintura para não piscar.
+      try {
+        var p = JSON.parse(localStorage.getItem('doroxandria:preferencias') || '{}').state || {};
+        var q = new URLSearchParams(location.search).get('tema');
+        var tema = q || p.tema || 'sistema';
+        var escuro =
+          tema === 'escuro' ||
+          (tema === 'sistema' && matchMedia('(prefers-color-scheme: dark)').matches);
+        if (escuro) document.documentElement.classList.add('dark');
+        if (p.calmo) document.documentElement.setAttribute('data-calm', '');
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="/doroxandria-app/assets/index-D82pLVrs.js"></script>
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/rolldown-runtime-COiEfhsA.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/chunk-6KYCQHYJ-C3LkFgFv.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/x-CPBBxT-o.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/tslib.es6-aKhdzU3n.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/dist-Cim9Efnb.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/sobreposicoes-BxY76IWA.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/src-BbrGQFgh.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/cadastro-CXK36Ggi.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/AuthProvider-sF4IGme-.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/datas-ztUKnkdB.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/import-wrapper-DSeulvJm.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/preferencias-DN3-LISt.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/DadosProvider-Czuvwb4g.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/triangle-alert-C3HGPdce.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/check-EfgFDwfq.js">
+    <link rel="modulepreload" crossorigin href="/doroxandria-app/assets/formularios-DQHkBqqM.js">
+    <link rel="stylesheet" crossorigin href="/doroxandria-app/assets/index-BaJGZrkG.css">
+  <link rel="manifest" href="/doroxandria-app/manifest.webmanifest"></head>
+  <body>
+    <noscript>O Doroxandria precisa de JavaScript para funcionar.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
