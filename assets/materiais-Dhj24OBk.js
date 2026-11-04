@@ -1,0 +1,1 @@
+function e(e){if(!e)return!1;try{return/(^|\.)tecconcursos\.com\.br$/i.test(new URL(e).hostname)}catch{return!1}}function t(e){if(!e)return!1;try{return[`http:`,`https:`].includes(new URL(e).protocol)}catch{return!1}}export{e as n,t};
