@@ -1,0 +1,1 @@
+var e=`/assets/sql-wasm-browser-DfANybxk.wasm`;export{e as default};
