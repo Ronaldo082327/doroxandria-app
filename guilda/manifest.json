@@ -1,0 +1,19 @@
+{
+  "name": "Dora Guilda · Engenharia Cognitiva para Concursos Públicos",
+  "short_name": "Dora Guilda",
+  "description": "Dora Guilda: questões, método do examinador, flashcards, simulados e revisão para a prova Transpetro 2026 (Cesgranrio, Ênfase 5).",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#211a16",
+  "theme_color": "#211a16",
+  "icons": [
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
