@@ -1,0 +1,31 @@
+// Service worker do Doroxandria: abre offline e atualiza em segundo plano.
+const CACHE = 'arena-202611211800';
+const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png',
+  'questoes.json', 'cards.json', 'banca.json', 'videos.json', 'links.json',
+  'cadernos.json', 'biblioteca.json', 'concursos/indice.json', 'concursos/modelo.json', 'jogo.html', 'macetes.json',
+  'expedicao.html', 'estudio.html', 'temas.css', 'tema.css', 'tema.js', 'guilda.js', 'rag.js', 'grafo.js', 'rotina.js', 'motor.js', 'gemeo.js', 'constelacao.js', 'cofre.js', 'canvas.js', 'bancas/perfis.json', 'exemplos/indice.json', 'abrir.js', 'identidade/marca.svg', 'identidade/capa.svg', 'identidade/sprite.svg', 'favicon.svg', 'apple-touch-icon-180.png', 'identidade/abertura-logo.svg', 'icon-maskable-512.png', 'inteligencia/padroes.json', 'anki/baralhos.json', 'ingles/textos.json', 'inteligencia/incidencia.json', 'inteligencia/radar.json', 'expedicao/indice.json', 'expedicao/portugues.json', 'expedicao/ingles.json', 'expedicao/dados.json', 'expedicao/projetos.json',
+  'expedicao/governanca.json', 'expedicao/engsoft.json', 'expedicao/ux.json', 'expedicao/bi.json', 'expedicao/logica.json', 'expedicao/seguranca.json'];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL.map(u => new Request(u, {cache: 'reload'})))).then(() => self.skipWaiting()));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
+    .then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  const sameOrigin = url.origin === self.location.origin;
+  const cdn = /(^|\.)cdn\.jsdelivr\.net$|(^|\.)unpkg\.com$|(^|\.)fonts\.(googleapis|gstatic)\.com$/.test(url.hostname);
+  if (!sameOrigin && !cdn) return;
+  if (/\.(mp3|m4a|wav|ogg)$/i.test(url.pathname)) return;
+  e.respondWith(caches.open(CACHE).then(async cache => {
+    const key = sameOrigin ? new Request(url.origin + url.pathname) : req;
+    const hit = await cache.match(key);
+    const net = fetch(sameOrigin ? new Request(req, {cache: 'no-cache'}) : req).then(res => { if (res && (res.ok || res.type === 'opaque')) cache.put(key, res.clone()); return res; }).catch(() => null);
+    if (hit) { e.waitUntil(net); return hit; }
+    const res = await net;
+    return res || new Response('Sem conexão e sem cópia salva.', {status: 503, headers: {'Content-Type': 'text/plain; charset=utf-8'}});
+  }));
+});
